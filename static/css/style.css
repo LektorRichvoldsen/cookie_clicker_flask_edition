@@ -1,0 +1,53 @@
+#container {
+    display: flex;
+    width: 1000px;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+#spillOmraade {
+    width: 600px;
+    border: 1px black solid;
+
+}
+#highscoreOmraade {
+    width: 300px;
+    border: 1px black solid;
+
+}
+#lagreScoreOmraade {
+    width: 922px;
+    border: 1px black solid;
+}
+
+.content {
+    padding: 5px;
+    margin: 5px;
+    border-radius: 3px;
+}
+
+button {
+    border: 5px solid #20750D;
+    border-radius: 12px;
+    background: #21BC27;
+    color: #CDFFCA;
+    display:inline-block;
+    padding:20px;
+    opacity:1;
+}
+
+#knapp {
+    border: 5px solid #100b70;
+    background: #313ae2;
+    color: #a5a9f5;
+}
+
+button {
+    border: 5px solid #20750D;
+    border-radius: 12px;
+    background: #21BC27;
+    color: #CDFFCA;
+    display:inline-block;
+    padding:20px;
+    opacity:1;
+}
