@@ -10,12 +10,12 @@ connection = database.connect(
 
 cursor = connection.cursor()
 
-def add_data(first_name, last_name):
+def save_score(user, score):
     try:
-        statement = "INSERT INTO employees (first_name,last_name) VALUES (%s, %s)"
-        data = (first_name, last_name)
+        statement = "INSERT INTO high_score (name, score) VALUES (%s, %s)"
+        data = (user, score)
         cursor.execute(statement, data)
-        cursor.commit()
+        connection.commit()
         print("Successfully added entry to database")
     except database.Error as e:
         print(f"Error adding entry to database: {e}")
