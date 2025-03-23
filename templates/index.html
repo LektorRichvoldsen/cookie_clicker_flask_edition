@@ -22,8 +22,9 @@
         </div>
         <div id="highscoreOmraade" class="content">
             <h2>Her er de ti beste resultatene, straight from your DB:</h2>
-            {% include 'showTopTen.html' %}
-
+            {% with top_ten_list = items %}
+                {% include 'showTopTen.html' %}
+            {% endwith %}
         </div>
         <div id="lagreScoreOmraade" class="content">
             {% include 'lagreScore.html' %}

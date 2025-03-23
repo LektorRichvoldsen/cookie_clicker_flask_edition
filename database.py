@@ -1,14 +1,12 @@
 import os
 import mysql.connector as database
-
-username = os.environ.get("username")
-password = os.environ.get("password")
+import config
 
 connection = database.connect(
-    user=username,
-    password=password,
-    host='localhost',
-    database="workplace")
+    user=config.USER,
+    password=config.PWD,
+    host=config.HOST,
+    database=config.DB)
 
 cursor = connection.cursor()
 
@@ -22,17 +20,13 @@ def add_data(first_name, last_name):
     except database.Error as e:
         print(f"Error adding entry to database: {e}")
 
-def get_data(last_name):
-    try:
-      statement = "SELECT first_name, last_name FROM employees WHERE last_name=%s"
-      data = (last_name,)
-      cursor.execute(statement, data)
-      for (first_name, last_name) in cursor:
-        print(f"Successfully retrieved {first_name}, {last_name}")
-    except database.Error as e:
-      print(f"Error retrieving entry from database: {e}")
+def get_top_ten():
+    mycursor = connection.cursor()
 
-add_data("Kofi", "Doe")
-get_data("Doe")
+    mycursor.execute("SELECT * FROM high_score ORDER BY score DESC LIMIT 10")
 
-connection.close()
+    myresult = mycursor.fetchall()
+
+    return myresult
+
+#connection.close()
