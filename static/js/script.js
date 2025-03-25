@@ -1,17 +1,11 @@
 var knappEl = document.getElementById("knapp");
-var plussEnKnappEl = document.getElementById("plussEnKnapp");
 var utskiftEl = document.getElementById("utskriftOmraade");
-var plussTiKnapp = document.getElementById("plussTiKnapp");
+
+var spillOmradeEl = document.getElementById("spillOmraade");
 
 knappEl.addEventListener("click", klikkefunksjon);
-plussEnKnappEl.addEventListener("click", leggTilEtKlikk);
-plussTiKnapp.addEventListener("click", leggTilEtKlikk);
 
-// Legger til verdier som skal lese ut av click-eventet
-plussEnKnappEl.verdi = 10;
-plussEnKnappEl.klikkOkning = 1;
-plussTiKnapp.verdi = 100;
-plussTiKnapp.klikkOkning = 10;
+var tigangeren = 1;
 
 var antallPoengPerKlikk = 1;
 var antallKlikk = 0;
@@ -29,6 +23,27 @@ function leggTilEtKlikk(e){
         antallKlikk -= e.currentTarget.verdi;
         antallPoengPerKlikk += e.currentTarget.klikkOkning;
         utskiftEl.innerHTML = "Du har kjøpt en oppgradering. Antall klikk er nå " + antallKlikk + ", og du får " + antallPoengPerKlikk + " poeng per klikk";
+    
+        console.log(tigangeren);
+        
+        if(e.currentTarget.verdi >= tigangeren){
+            tigangeren = tigangeren*10;
+            lagKnapp("+" + tigangeren + "(koster " + tigangeren*10 + " klikk)", tigangeren*10, tigangeren);
+        }
     }
 }
+
+function lagKnapp(tekst, verdi, okning){
+    var knappEl = document.createElement("button");
+    knappEl.innerText = tekst;
+    knappEl.addEventListener("click", leggTilEtKlikk);
+    knappEl.verdi = verdi;
+    knappEl.klikkOkning = okning;
+    spillOmradeEl.appendChild(knappEl);
+}
+
+lagKnapp("+" + tigangeren + "(koster " + tigangeren*10 + " klikk)", tigangeren*10, tigangeren);
+tigangeren = tigangeren*10;
+lagKnapp("+" + tigangeren + "(koster " + tigangeren*10 + " klikk)", tigangeren*10, tigangeren);
+tigangeren = tigangeren*10;
 
